@@ -1,4 +1,4 @@
-# Politician Tweets Analysis
+# Politician Tweets Analysis ([Video](https://drive.google.com/file/d/1BSd3sXKjJQrW-jx5LTgutqFANJrx2ROO/view?usp=sharing))
 ## Introduction
 
 As we all know, Twitter is an important social media among celebrities. Also, recently, it has been a hot topic for text analysis. Since I'm pretty new to natural language processing, I think it would be fun to do some analysis on tweets. With the hottest topic this year except for COVID-19, which is **presidential election**, I decided to crawl few iconic politician candidates from both Republicans and Democrats to see if it is possible to guess a tweet is posted by whom.
