@@ -3,69 +3,27 @@
 
 As we all know, that Twitter is a important social media among celebrities. Also, recently, it has been a hot topic for text analysis. Since I'm pretty new to natural language processing, I think it would be fun to do some analysis on tweets. With the hottest topic this year except COVID-19, which is **presendential election**, I decided to crawl few iconic politician candidates from both repulican and democrat to see if it is possible to guess a tweet is posted by whom.
 
-![Image](https://cdn.cnn.com/cnnnext/dam/assets/181105112842-donkey-elephant-top.jpg)
-*This image credits to [CNN](https://www.cnn.com/style/article/why-democrats-are-donkeys-republicans-are-elephants-artsy/index.html)*
+![Repulican vs Democrat](https://cdn.cnn.com/cnnnext/dam/assets/181105112842-donkey-elephant-top.jpg)
+_This image credits to [CNN](https://www.cnn.com/style/article/why-democrats-are-donkeys-republicans-are-elephants-artsy/index.html)_
 
 Here I crawled five politicians' tweets via Twitter API. These five politicians are Bernie Sanders, Donald Trump, Kamala Harris, Joe Biden, and Mike Pence, respectively. Further details will be described below.
 
 
 ## Method
 ### Web Scraping
-I used `tweepy` library to scrape the politicians tweets via Twitter API.
-```python
-# for security purpose, I removed my personal keys grated by Twitter.
-consumer_key = ""
-consumer_secret = ""
-access_token = ""
-access_token_secret = ""
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth,wait_on_rate_limit=True)
+I used `tweepy` library to scrape the politicians tweets via Twitter API. Further details please refer to my jupyter file. (For security issue, I removed my consumer keys.)
+I was planning to scrape 2500 tweets for each politician. However, the Twitter API seems not working well for `@realDonaldTrump`. Each time, the returned amount varies. At first, I thought that was because of the limitation of API calls. Nonetheless, the API works totally fine for all the other politicians and I also found out someone encountered the same probelm as me. ([tweepy github issue](https://github.com/tweepy/tweepy/issues/1361))
+After several times of try and error, I can only get 2193 tweets from Trump to make the dataset as homogeneous as possible.
 
-politicians = ['BernieSanders', 'realDonaldTrump', 'Mike_Pence', 'JoeBiden', 'KamalaHarris']
-count = 2500
-tweets_df = pd.DataFrame(columns=['text', 'politician'])
-
-for name in politicians:
-    try:
-        # Creation of query method using parameters
-        tweets = tweepy.Cursor(api.user_timeline, screen_name='@'+name, tweet_mode="extended").items(count)
-        tweets_list = [{'text': tweet.full_text, 'politician': name} for tweet in tweets]
-        tweets_df = tweets_df.append(tweets_list, ignore_index = True)
-
-    except BaseException as e:
-        print('failed on_status,',str(e))
-        time.sleep(3)
-```
-
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Text preprocessing
+#### Removal of URLs
+#### Removal of Emojis
+#### Removal of Puctuations
+#### Lemmatization
 
 ## Results
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/chialin6/cse490g_fp_politician_tweets/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-## Future Improvement
+## Conclusions
 
 ## Reference
 1. [A Comprehensive Introduction to Torchtext (Practical Torchtext part 1)](https://mlexplained.com/2018/02/08/a-comprehensive-tutorial-to-torchtext/)
@@ -80,3 +38,4 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 10. [Transfer Learning in NLP for Tweet Stance Classification](https://towardsdatascience.com/transfer-learning-in-nlp-for-tweet-stance-classification-8ab014da8dde)
 11. [Beginners Guide to Text Generation using LSTMs](https://www.kaggle.com/shivamb/beginners-guide-to-text-generation-using-lstms)
 12. [NLP FROM SCRATCH: CLASSIFYING NAMES WITH A CHARACTER-LEVEL RNN](https://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html)
+13. [Getting started with Text Preprocessing](https://www.kaggle.com/sudalairajkumar/getting-started-with-text-preprocessing#Lemmatization)
