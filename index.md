@@ -28,9 +28,32 @@ As for punctuation symbols like `!"#$%&\'()*+,-./:;<=>?@[\\]^_{|}~`, these are b
 #### Lemmatization
 Lemmatization is a more special technique compared to text cleansing like above. It combines several words into one word which has similar stemming (root words), for example, "working", "worked", "works" will be assigned as "work". And here I adopted a library called **WordNet** to achieve lemmatization.
 
-### Model
+### Training
+#### Model
+![LSTM](https://www.researchgate.net/profile/Savvas_Varsamopoulos/publication/329362532/figure/fig5/AS:699592479870977@1543807253596/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell.jpg)
+In Recurrent Neural Networks, activation outputs are propagated in both directions (from inputs to outputs and from outputs to inputs), which acts as a **memory state** of the neurons. This state allows the neurons an ability to remember what have been learned so far. In **LSTM**, it adopts a new **cell state** which controlled by a forget gate to decide how much it should remember. And thus, LSTM is a really helpful model to process natural language where each word has relationship between its context to some degree.
+```python
+  self.embedding = nn.Embedding(len(text_field.vocab), emb_dim)
+  self.dimension = dimension
+  self.lstm = nn.LSTM(input_size=emb_dim,
+                      hidden_size=dimension,
+                      num_layers=2,
+                      batch_first=True,
+                      bidirectional=True)
+  self.drop = nn.Dropout(p=0.3)
+
+  self.fc = nn.Linear(2*dimension, 5)
+```
+I deployed a simple LSTM which embeds text into vocab first, and then followed by 2 stacked LSTM cells.
+
+#### Optimizer
+I chose Adam with learning rate = 0.0001 as optimizer.
+
+#### Loss function
+For loss function, I used [BCE Loss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html) which is good for one-hot encoded multi-class problems.
 
 ## Results
+The model ends up coverging really fast in less than 10 epochs. I've adjusted neural network parameters for several times, but it always converge in about 3-5 epochs with **Train Loss: 0.1241, Valid Loss: 0.2091**.
 
 ## Conclusions
 
