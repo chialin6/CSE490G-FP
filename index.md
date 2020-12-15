@@ -11,7 +11,7 @@ Here I crawled five politicians' tweets via Twitter API. These five politicians 
 
 ## Method
 ### Web Scraping
-I used the `tweepy` library to scrape the politicians' tweets via Twitter API. For further details please refer to my jupyter file. (For security issues, I removed my consumer keys.)
+I used the `tweepy` library to scrape the politicians' tweets via Twitter API. For further details please refer to my [jupyter notebook](https://github.com/chialin6/CSE490G-FP/blob/gh-pages/cse490g_fp_details.ipynb). (For security issues, I removed my consumer keys.)
 I was planning to scrape 2500 tweets for each politician. However, the Twitter API seems not to work well for `@realDonaldTrump`. Each time, the returned amount varies. At first, I thought that was because of the limitation of API calls. Nonetheless, the API works totally fine for all the other politicians and I also found out someone encountered the same problem as me. ([tweepy Github issue](https://github.com/tweepy/tweepy/issues/1361))
 After several times of try and error, I can only get 2193 tweets from Trump to make the dataset as homogeneous as possible.
 
@@ -29,6 +29,7 @@ As for punctuation symbols like `!"#$%&\'()*+,-./:;<=>?@[\\]^_{|}~`, these are b
 Lemmatization is a more special technique compared to text cleansing like above. It combines several words into one word which has similar stemming (root words), for example, "working", "worked", "works" will be assigned as "work". And here I adopted a library called **WordNet** to achieve lemmatization.
 
 ### Training
+All the further implementation details can be found in my [jupyter notebook](https://github.com/chialin6/CSE490G-FP/blob/gh-pages/cse490g_fp_details.ipynb)
 #### Model
 ![LSTM](https://www.researchgate.net/profile/Savvas_Varsamopoulos/publication/329362532/figure/fig5/AS:699592479870977@1543807253596/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell.jpg)
 _Image credits to [ResearchGate](https://www.researchgate.net/figure/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell_fig5_329362532)_
