@@ -31,6 +31,7 @@ Lemmatization is a more special technique compared to text cleansing like above.
 ### Training
 #### Model
 ![LSTM](https://www.researchgate.net/profile/Savvas_Varsamopoulos/publication/329362532/figure/fig5/AS:699592479870977@1543807253596/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell.jpg)
+_Image credits to [ResearchGate](https://www.researchgate.net/figure/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell_fig5_329362532)_
 In Recurrent Neural Networks, activation outputs are propagated in both directions (from inputs to outputs and from outputs to inputs), which acts as a **memory state** of the neurons. This state allows the neurons an ability to remember what have been learned so far. In **LSTM**, it adopts a new **cell state** which controlled by a forget gate to decide how much it should remember. And thus, LSTM is a really helpful model to process natural language where each word has relationship between its context to some degree.
 ```python
   self.embedding = nn.Embedding(len(text_field.vocab), emb_dim)
@@ -53,12 +54,19 @@ I chose Adam with learning rate = 0.0001 as optimizer.
 For loss function, I used [BCE Loss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html) which is good for one-hot encoded multi-class problems.
 
 ## Results
-The model ends up coverging really fast in less than 10 epochs. I've adjusted neural network parameters for several times, but it always converge in about 3-5 epochs with **Train Loss: 0.1241, Valid Loss: 0.2091**.
-If we converted the predicted array into predicted politicians, it only gets around 20% accuracy, which is basically same as random guess.
+The model ends up converging really fast in less than 10 epochs. I've adjusted neural network parameters several times, but they always converge in about 3-5 epochs with **Train Loss: 0.1241, Valid Loss: 0.2091**.
+If we converted the predicted array into predicted politicians, it only gets around 20% accuracy, which is basically the same as a random guess.
 
 ## Conclusions
-To be honest, I feel really frustrated that it seems like a bad neural network which learns nothing. There are several reasons that I guess might cause this result.
-
+To be honest, I feel really frustrated that it seems like a bad neural network that learns nothing. There are several reasons that I guess might cause this result.
+### Insufficient Dataset
+10000 entries of tweets seem like not enough to train a network. It converges too fast to learn, even there's only one layer.
+### Too Noisy Input
+Although I've done some text-cleansing, the tweets, in general, are still really noisy compared to normal text. Maybe it will be a good idea to try to convert emojis into more meaningful texts or other information.
+### High Similarity Among Dataset
+I'm not sure whether this might be the reason. Because all the politicians' tweets are similar, it is hard to tell whose tweet is this even when a human is guessing. When I look into the predicted numerical array, it seems like most of the guessing are around 0.5. Only a few are 0.7. I was thinking maybe defining different loss function would help. The other idea will be to have topic/issuee" labels to see which politicians support which topics, instead of just random guessing tweets.
+### Other takeaways
+I have to say this is not a pleasant result, but I've done my best from collecting data to building a model. Some people also say that a sufficient or a good dataset will actually be helpful, which I believe is true. Instead of just trying to use a neural network to solve any problems, I now think it will be more rational to think about what kind of topics or what types of the dataset would be suitable for a neural network model.
 
 ## Reference
 1. [A Comprehensive Introduction to Torchtext (Practical Torchtext part 1)](https://mlexplained.com/2018/02/08/a-comprehensive-tutorial-to-torchtext/)
