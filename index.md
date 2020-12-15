@@ -44,7 +44,7 @@ In Recurrent Neural Networks, activation outputs are propagated in both directio
 
   self.fc = nn.Linear(2*dimension, 5)
 ```
-I deployed a simple LSTM which embeds text into vocab first, and then followed by 2 stacked LSTM cells.
+I deployed a simple LSTM which embeds text into vocab first, and then followed by 2 stacked LSTM cells. I also tried to stack different amount of layers together. However, the best results are similar from one layer to 5 layers.
 
 #### Optimizer
 I chose Adam with learning rate = 0.0001 as optimizer.
@@ -54,8 +54,11 @@ For loss function, I used [BCE Loss](https://pytorch.org/docs/stable/generated/t
 
 ## Results
 The model ends up coverging really fast in less than 10 epochs. I've adjusted neural network parameters for several times, but it always converge in about 3-5 epochs with **Train Loss: 0.1241, Valid Loss: 0.2091**.
+If we converted the predicted array into predicted politicians, it only gets around 20% accuracy, which is basically same as random guess.
 
 ## Conclusions
+To be honest, I feel really frustrated that it seems like a bad neural network which learns nothing. There are several reasons that I guess might cause this result.
+
 
 ## Reference
 1. [A Comprehensive Introduction to Torchtext (Practical Torchtext part 1)](https://mlexplained.com/2018/02/08/a-comprehensive-tutorial-to-torchtext/)
@@ -71,3 +74,4 @@ The model ends up coverging really fast in less than 10 epochs. I've adjusted ne
 11. [Beginners Guide to Text Generation using LSTMs](https://www.kaggle.com/shivamb/beginners-guide-to-text-generation-using-lstms)
 12. [NLP FROM SCRATCH: CLASSIFYING NAMES WITH A CHARACTER-LEVEL RNN](https://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html)
 13. [Getting started with Text Preprocessing](https://www.kaggle.com/sudalairajkumar/getting-started-with-text-preprocessing#Lemmatization)
+14. [Language Modelling and Text Generation using LSTMs — Deep Learning for NLP](https://medium.com/@shivambansal36/language-modelling-text-generation-using-lstms-deep-learning-for-nlp-ed36b224b275)
