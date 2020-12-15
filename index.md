@@ -57,6 +57,118 @@ For loss function, I used [BCE Loss](https://pytorch.org/docs/stable/generated/t
 ## Results
 The model ends up converging really fast in less than 10 epochs. I've adjusted neural network parameters several times, but they always converge in about 3-5 epochs with **Train Loss: 0.1241, Valid Loss: 0.2091**.
 If we converted the predicted array into predicted politicians, it only gets around 20% accuracy, which is basically the same as a random guess.
+### Some prediction examples
+```
+trump predicts 35 growth in q3  ‘we‘re coming back stronger‘ url via breitbartnews would be biggest ever
+pred: JoeBiden
+label: realDonaldTrump
+
+i urge president trump to join me in saying that while peaceful protest is an important right — violence is wrong period
+if he can’t say that then he is unfit to be president url
+pred: realDonaldTrump
+label: JoeBiden
+
+the launch of the resilience spacecraft is the culmination of four years of renewed leadership in space it’s a tribute to the courage of our astronauts the ingenuity of the men and women of nasa and spacex and the unrelenting vision of president realdonaldtrump
+pred: realDonaldTrump
+label: Mike_Pence
+
+rt joebiden we have one shot one opportunity one moment
+don’t miss the chance — vote url
+pred: realDonaldTrump
+label: KamalaHarris
+
+if youre excited too join us at 3 pm et url
+pred: realDonaldTrump
+label: JoeBiden
+
+rt danscavino potus still going in janesville wisconsin maga🦅
+url url
+pred: realDonaldTrump
+label: realDonaldTrump
+
+in the midst of a pandemic which has now claimed 100000 americans’ lives were seeing the reality of trump’s socalled “strong economy” we cannot lose sight of our goal of an economic system that works for all people not just the billionaire class url
+pred: realDonaldTrump
+label: BernieSanders
+
+from voting rights to health disparities this pandemic is an opportunity to restructure already broken systems that are now too pronounced to ignore 
+url
+pred: realDonaldTrump
+label: KamalaHarris
+
+i know that history has tried to sanitize the movement and to make it a digestible soundbite that rosa sat and martin marched and john crossed a bridge and suddenly we had equality and civil rights we’re still in the civil rights movement” –ayannapressley url
+pred: realDonaldTrump
+label: BernieSanders
+
+rt realdonaldtrump thank you michigan
+url
+pred: realDonaldTrump
+label: Mike_Pence
+
+rt danscavino potus still going in janesville wisconsin maga🦅
+url url
+pred: realDonaldTrump
+label: realDonaldTrump
+
+roaring support for president realdonaldtrump in wisconsin  url
+pred: Mike_Pence
+label: Mike_Pence
+
+rt garepublicans its not too late to get your ticket to see vice president mikepence in augusta this afternoon
+url…
+pred: Mike_Pence
+label: Mike_Pence
+
+ignore the polls 
+register to vote url url
+pred: JoeBiden
+label: JoeBiden
+
+rt gop “the last time you saw a democrat nominee for president in the badger state was back in 2012 … i’m here to tell you get used to s…
+pred: Mike_Pence
+label: Mike_Pence
+
+i know kamalaharris will work every single day to make life better for all americans and build this nation back better than before url
+pred: JoeBiden
+label: JoeBiden
+
+no the 2020 election was a total scam we won by a lot and will hopefully turn over the fraudulent result but we must get out and help david and kelly two great people otherwise we are playing right into the hands of some very sick people i will be in georgia on saturday url
+pred: realDonaldTrump
+label: realDonaldTrump
+
+“we believe these people are thieves the big city machines are corrupt this was a stolen election best pollster in britain wrote this morning that this clearly was a stolen election that it’s impossible to imagine that biden outran obama in some of these states
+pred: realDonaldTrump
+label: realDonaldTrump
+
+adrian perkins has fought for our country and now he wants to take that fight to the senate to build a better louisiana for all watch his video and chip in a few bucks if you can   
+url url
+pred: KamalaHarris
+label: KamalaHarris
+
+as a neuroscientist arati4congress understands health care is a right for all not a privilege arati decided to take on the incumbent democrat in her district because she knows that this moment requires bold progressive leadership i’m proud to endorse her today url
+pred: BernieSanders
+label: BernieSanders
+
+rt teamtrump president realdonaldtrump jon ossoff is a radical left wing zealot url
+pred: realDonaldTrump
+label: realDonaldTrump
+
+our announced economic team shares our commitment to building an economy where everyone has access to a higher minimum wage affordable health care paid family leave and paid sick leave 
+an america where opportunity is within reach for everyone—for all the people
+pred: KamalaHarris
+label: KamalaHarris
+
+rt robertcahaly our trafalgargroup gasen runoff polls also shed some light on georgia voters opinions of whether the presidential e…
+pred: realDonaldTrump
+label: realDonaldTrump
+
+we have great support on the election hoax url
+pred: realDonaldTrump
+label: realDonaldTrump
+
+west virginians deserve a voice in congress who will look out for the working class and address their economic pain when kunkel4congress gets to washington that is exactly what she will do url
+pred: BernieSanders
+label: BernieSanders
+```
 
 ## Conclusions
 To be honest, I feel really frustrated that it seems like a bad neural network that learns nothing. There are several reasons that I guess might cause this result.
